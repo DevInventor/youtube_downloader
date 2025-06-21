@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multi YouTube Downloader</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+    <h1>YouTube Downloader</h1>
+
+    <div id="process-container">
+        <!-- Process rows go here -->
+    </div>
+
+    <button onclick="addProcess()" class="add-btn">➕ Add Process</button>
+
+    <h2>Downloaded Files</h2>
+    <ul id="file-list"></ul>
+</div>
+
+<script>
+let processCount = 0;
+
+function addProcess() {
+    const container = document.getElementById("process-container");
+
+    const div = document.createElement("div");
+    div.className = "process-row";
+    div.innerHTML = `
+        <input type="text" class="link-input" placeholder="Enter YouTube link">
+        <select class="format-select">
+            <option value="mp3">MP3</option>
+            <option value="mp4">MP4</option>
+        </select>
+        <button onclick="download(this)">Download</button>
+        <span class="loader" style="display: none;"></span>
+        <span class="status"></span>
+    `;
+    container.appendChild(div);
+}
+
+async function download(button) {
+    const row = button.parentElement;
+    const link = row.querySelector(".link-input").value;
+    const format = row.querySelector(".format-select").value;
+    const loader = row.querySelector(".loader");
+    const status = row.querySelector(".status");
+
+    if (!link.trim()) {
+        alert("Please enter a link.");
+        return;
+    }
+
+    loader.style.display = "inline-block";
+    status.textContent = "";
+
+    const formData = new FormData();
+    formData.append("link", link);
+    formData.append("format", format);
+
+    const response = await fetch("/api/download", {
+        method: "POST",
+        body: formData
+    });
+
+    const result = await response.json();
+    loader.style.display = "none";
+
+    if (result.success) {
+        status.textContent = "✅ Downloaded";
+        loadDownloadedFiles();
+    } else {
+        status.textContent = "❌ Error: " + result.message;
+    }
+}
+
+async function loadDownloadedFiles() {
+    const res = await fetch("/api/files");
+    const data = await res.json();
+
+    const list = document.getElementById("file-list");
+    list.innerHTML = "";
+
+    data.files.forEach(file => {
+        const li = document.createElement("li");
+        li.textContent = file;
+        list.appendChild(li);
+    });
+}
+
+window.onload = () => {
+    addProcess(); // Add first row by default
+    loadDownloadedFiles();
+};
+</script>
+</body>
+</html>
