@@ -25,8 +25,9 @@ async def home(request: Request):
 async def api_download(link: str = Form(...), format: str = Form(...)):
     try:
         ydl_opts = {
-            'ffmpeg_location': 'E:/ffmpeg/bin',  # adjust if needed
+            'ffmpeg_location': 'E:/ffmpeg/bin',  # your ffmpeg path
             'outtmpl': os.path.join(DOWNLOADS_PATH, '%(title)s.%(ext)s'),
+            'noplaylist': True,  # <-- ADD THIS LINE
             'format': 'bestaudio/best' if format == 'mp3' else 'best',
             'postprocessors': [{
                 'key': 'FFmpegExtractAudio',

@@ -1,22 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Multi YouTube Downloader</title>
+    <meta charset="UTF-8">
+    <title>YouTube Downloader</title>
     <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-    <h1>YouTube Downloader</h1>
+    <header>
+        <h1>🎵 YouTube Media Downloader</h1>
+        <p>Download your favorite songs or videos — one link at a time.</p>
+    </header>
 
-    <div id="process-container">
-        <!-- Process rows go here -->
-    </div>
+    <main>
+        <div class="container">
+            <div id="process-container"></div>
+            <button onclick="addProcess()" class="add-btn">➕ Add Another Link</button>
 
-    <button onclick="addProcess()" class="add-btn">➕ Add Process</button>
+            <h2>📂 Downloaded Files</h2>
+            <ul id="file-list" class="file-list"></ul>
+        </div>
+    </main>
 
-    <h2>Downloaded Files</h2>
-    <ul id="file-list"></ul>
-</div>
+    <footer>
+        <p>&copy; 2025 Het Patel • Built with ❤️ and FastAPI</p>
+    </footer>
 
 <script>
 let processCount = 0;
@@ -27,12 +35,12 @@ function addProcess() {
     const div = document.createElement("div");
     div.className = "process-row";
     div.innerHTML = `
-        <input type="text" class="link-input" placeholder="Enter YouTube link">
+        <input type="text" class="link-input" placeholder="Paste YouTube link here" required>
         <select class="format-select">
             <option value="mp3">MP3</option>
             <option value="mp4">MP4</option>
         </select>
-        <button onclick="download(this)">Download</button>
+        <button onclick="download(this)" class="download-btn">Download</button>
         <span class="loader" style="display: none;"></span>
         <span class="status"></span>
     `;
@@ -67,10 +75,10 @@ async function download(button) {
     loader.style.display = "none";
 
     if (result.success) {
-        status.textContent = "✅ Downloaded";
+        status.textContent = "✅ Done";
         loadDownloadedFiles();
     } else {
-        status.textContent = "❌ Error: " + result.message;
+        status.textContent = "❌ " + result.message;
     }
 }
 
@@ -89,7 +97,7 @@ async function loadDownloadedFiles() {
 }
 
 window.onload = () => {
-    addProcess(); // Add first row by default
+    addProcess(); // One input by default
     loadDownloadedFiles();
 };
 </script>
