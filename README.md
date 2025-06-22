@@ -41,7 +41,9 @@ cd youtube-downloader-web
 
 Save screenshots as:
 
-- `screenshots/home.png` — a screenshot of the UI with link fields
+- ![image](https://github.com/user-attachments/assets/87878426-f18f-49bb-9599-3488ab1f1d35)
+![image](https://github.com/user-attachments/assets/d960ab90-65e0-4931-8af0-5071d0d75119)
+
 
 ## ⚠️ Disclaimer
 
