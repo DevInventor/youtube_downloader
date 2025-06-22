@@ -6,16 +6,6 @@ A FastAPI + HTML/CSS-based web application to download **YouTube videos or audio
 
 ---
 
-## 📸 Preview
-
-### 🖼️ Home Page
-![Home UI](screenshots/home_ui.png)
-
-### 📥 Downloaded Files
-![Download UI](screenshots/download_list.png)
-
----
-
 ## 🚀 Features
 
 - 🎯 Download YouTube videos as **MP3 or MP4**
@@ -41,10 +31,7 @@ cd youtube-downloader-web
 
 Save screenshots as:
 <h3>Home Page</h3>
-<img src="https://github.com/user-attachments/assets/87878426-f18f-49bb-9599-3488ab1f1d35" alt="Home UI" width="600"/>
-
-<h3>Downloaded Files View</h3>
-<img src="https://github.com/user-attachments/assets/abc12345-6789-image2.png" alt="Files UI" width="600"/>
+<img src="https://github.com/user-attachments/assets/87878426-f18f-49bb-9599-3488ab1f1d35" alt="Home UI" width="500"/>
 
 
 ## ⚠️ Disclaimer
