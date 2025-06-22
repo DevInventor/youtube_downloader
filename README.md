@@ -40,8 +40,11 @@ cd youtube-downloader-web
 ### 🖼️ Add Screenshots
 
 Save screenshots as:
+<h3>Home Page</h3>
+<img src="https://github.com/user-attachments/assets/87878426-f18f-49bb-9599-3488ab1f1d35" alt="Home UI" width="600"/>
 
-- ![image](https://github.com/user-attachments/assets/87878426-f18f-49bb-9599-3488ab1f1d35)
+<h3>Downloaded Files View</h3>
+<img src="https://github.com/user-attachments/assets/abc12345-6789-image2.png" alt="Files UI" width="600"/>
 
 
 ## ⚠️ Disclaimer
